@@ -37,9 +37,14 @@ if (empty($_GET)) {
         if (($userNameErr == "") && ($passwordErr == "") && ($loginErr == "")) {
             $headers = array('alg' => 'HS256', 'typ' => 'JWT');
             $payload = array('username' => $userName, 'exp' => (time() + JWT_TOKEN_TIME));
-
             $token = generateJWTToken($headers, $payload, JWT_SECRET_KEY);
-            $successData = array("Username" => $userName, "Token" => $token);
+
+
+            $userCred = array("Username" => $userName);
+            $details = Admin::getSelectedUser(json_encode($userCred));
+            $getDetails = $details['Data'];
+
+            $successData = array("Token" => $token, "User_details" => $getDetails);
             http_response_code(200);
             $response['statusCode'] = 200;
             $response['message'] = "Successfully logged in";

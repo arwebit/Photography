@@ -143,7 +143,7 @@ class Admin extends DB
         $userName = $getjsonData->Username;
 
         $sql = "SELECT username, full_name, contact_no, contact_email, status
-                FROM  admin_login_access WHERE a.username=? ";
+                FROM  admin_login_access WHERE username=? ";
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->bind_param('s', $userName);
         $stmt->execute();
@@ -177,7 +177,7 @@ class Admin extends DB
         }
 
         $sql = "SELECT username, full_name, contact_no, contact_email, status
-                FROM  admin_login_access ORDER BY b.user_first_name " . $limit;
+                FROM  admin_login_access ORDER BY full_name " . $limit;
         $stmt = parent::getConnection()->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();

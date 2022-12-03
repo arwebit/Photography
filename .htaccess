@@ -1,0 +1,44 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^.]+)$ $1.php 
+
+#  ----------------------- API Routes -----------------------
+
+#  ----------------------- Login APIS -----------------------
+
+RewriteRule ^api/admin/login$ admin_login.php [L] 
+RewriteRule ^api/user/login$ user_login.php [L]
+ 
+#  ----------------------- Login APIS -----------------------
+
+#  ----------------------- User APIS -----------------------
+
+RewriteRule ^api/users/([^.]+)$ user.php?username=$1 [L]
+RewriteRule ^api/users$ user.php [L] 
+RewriteRule ^api/user/create$ user_registration.php [L]
+
+#  ----------------------- User APIS -----------------------
+
+#  ----------------------- Category APIS -----------------------
+
+RewriteRule ^api/categorys/([0-9]+)$ category.php?category_id=$1 [L]
+RewriteRule ^api/categorys$ category.php [L] 
+
+#  ----------------------- Category APIS -----------------------
+
+#  ----------------------- Blog APIS -----------------------
+
+RewriteRule ^api/blogs/([0-9]+)$ blog.php?blog_id=$1 [L]
+RewriteRule ^api/blogs$ blog.php [L] 
+
+#  ----------------------- Blog APIS -----------------------
+
+#  ----------------------- Search APIS -----------------------
+
+RewriteRule ^api/search$ search.php [L] 
+
+#  ----------------------- Search APIS -----------------------
+
+#  ----------------------- API Routes -----------------------

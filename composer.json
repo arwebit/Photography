@@ -1,0 +1,14 @@
+{
+    "name": "arweb/photography",
+    "description": "ALl the APIs for photography",
+    "autoload": {
+        "psr-4": {
+            "App\\Photography\\": "models/"
+        }
+    },
+    "authors": [{
+        "name": "arwebit",
+        "email": "arwebcs@gmail.com"
+    }],
+    "require": {}
+}

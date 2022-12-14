@@ -1,0 +1,52 @@
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#cat-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="cat-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a routerLink="/category/add" routerLinkActive="active">
+                        <i class="bi bi-circle"></i><span>Add</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/category/view" routerLinkActive="active">
+                        <i class="bi bi-circle"></i><span>View</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Forms Nav -->
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#post-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-journal-text"></i><span>Posts</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="post-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a routerLink="/post/add" routerLinkActive="active">
+                        <i class="bi bi-circle"></i><span>Add</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/post/view" routerLinkActive="active">
+                        <i class="bi bi-circle"></i><span>View</span>
+                    </a>
+                </li>
+
+            </ul>
+        </li><!-- End Forms Nav -->
+
+    </ul>
+
+</aside><!-- End Sidebar-->

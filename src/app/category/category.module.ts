@@ -6,6 +6,7 @@ import { CategoryComponent } from './category.component';
 import { LayoutsModule } from '../layouts/layouts.module';
 import { AddComponent } from './add/add.component';
 import { ViewComponent } from './view/view.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ViewComponent } from './view/view.component';
   imports: [
     CommonModule,
     CategoryRoutingModule,
-    LayoutsModule
+    LayoutsModule,
+    ReactiveFormsModule
   ]
 })
 export class CategoryModule { }

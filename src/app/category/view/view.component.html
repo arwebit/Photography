@@ -3,12 +3,7 @@
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>{{ pageName }}</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a routerLink="/post/add">Home</a></li>
-                <li class="breadcrumb-item active">{{ pageName }}</li>
-            </ol>
-        </nav>
+
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -24,13 +19,28 @@
                                     <th>Option</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>yy</td>
-                                    <td>yy</td>
-                                    <td>yy</td>
+                            <tbody *ngIf="isData else blank">
+                                <tr *ngFor="let category of categoryList">
+                                    <td>{{ category.category_name }}</td>
+                                    <td>{{ category.category_status=="0"?"Inactive":"Active" }}</td>
+                                    <td>
+                                        <button class="btn btn-info">
+                                            EDIT
+                                        </button> || &nbsp;
+                                        <button class="btn btn-warning"
+                                            (click)="statusChange(category.category_id, category.category_status)">
+                                            {{ category.category_status=="0"?"ACTIVE":"INACTIVE" }}
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
+                            <ng-template #blank>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">{{ errorMessage }}</td>
+                                    </tr>
+                                </tbody>
+                            </ng-template>
                         </table>
                     </div>
                 </div>

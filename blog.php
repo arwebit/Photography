@@ -25,16 +25,16 @@ if ($authenticationToken) {
 
             if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 if ($getCountRecord > 0) {
-                    http_response_code(200);
+
                     $response['statusCode'] = 200;
                     $response['data'] = $getDetails;
                 } elseif ($getCountRecord == 0) {
-                    http_response_code(205);
+
                     $response['statusCode'] = 205;
                     $response['message'] = "No Content";
                     $response['error'] = "No record found";
                 } else {
-                    http_response_code(500);
+
                     $response['statusCode'] = 500;
                     $response['message'] = "Internal Server Error";
                     $response['error'] = "Server error";
@@ -124,17 +124,17 @@ if ($authenticationToken) {
                         $updateStatus = Blog::updateBlog(json_encode($updateCredentials));
 
                         if ($updateStatus > 0) {
-                            http_response_code(201);
+
                             $response['statusCode'] = 201;
                             $response['success'] = "Successfully updated post";
                         } else {
-                            http_response_code(500);
+
                             $response['statusCode'] = 500;
                             $response['message'] = "Server error";
                             $response['error'] = "Failed to update post";
                         }
                     } else {
-                        http_response_code(400);
+
                         $dataErrs = array(
                             "Photo" => $photoImageErr, "Username" => $postUserErr, "Title" => $titleErr,
                             "BlogCategory" => $blogCategoryErr, "Description" => $descriptionErr
@@ -144,12 +144,12 @@ if ($authenticationToken) {
                         $response['error'] = $dataErrs;
                     }
                 } elseif ($getCountRecord == 0) {
-                    http_response_code(205);
+
                     $response['statusCode'] = 205;
                     $response['message'] = "No Content";
                     $response['error'] = "No record found to change";
                 } else {
-                    http_response_code(500);
+
                     $response['statusCode'] = 500;
                     $response['message'] = "Internal Server Error";
                     $response['error'] = "Server error";
@@ -169,35 +169,35 @@ if ($authenticationToken) {
                         $updateStatus = Blog::blogStatusUpdate(json_encode($updateCredentials));
 
                         if ($updateStatus > 0) {
-                            http_response_code(201);
+
                             $response['statusCode'] = 201;
                             $response['success'] = "Successfully changed";
                         } else {
-                            http_response_code(500);
+
                             $response['statusCode'] = 500;
                             $response['message'] = "Server error";
                             $response['error'] = "Failed to change";
                         }
                     } else {
-                        http_response_code(400);
+
                         $dataErrs = array("Photoname" => $blogNameErr, "Status" => $statusErr);
                         $response['statusCode'] = 400;
                         $response['message'] = "Bad Request";
                         $response['error'] = $dataErrs;
                     }
                 } elseif ($getCountRecord == 0) {
-                    http_response_code(205);
+
                     $response['statusCode'] = 205;
                     $response['message'] = "No Content";
                     $response['error'] = "No record found to change";
                 } else {
-                    http_response_code(500);
+
                     $response['statusCode'] = 500;
                     $response['message'] = "Internal Server Error";
                     $response['error'] = "Server error";
                 }
             } else {
-                http_response_code(405);
+
                 $response['statusCode'] = 405;
                 $response['message'] = "Method not allowed";
                 $response['error'] = "HTTP method not allowed";
@@ -221,30 +221,30 @@ if ($authenticationToken) {
                     $getCountRecord = $details['Record'];
                     $getDetails = $details['Data'];
                     if ($getCountRecord > 0) {
-                        http_response_code(200);
+
                         $response['statusCode'] = 200;
                         $response['records'] = $getCountRecord;
                         $response['data'] = $getDetails;
                     } elseif ($getCountRecord == 0) {
-                        http_response_code(205);
+
                         $response['statusCode'] = 205;
                         $response['message'] = "No Content";
                         $response['error'] = "No record found";
                     } else {
-                        http_response_code(500);
+
                         $response['statusCode'] = 500;
                         $response['message'] = "Internal Server Error";
                         $response['error'] = "Server error";
                     }
                 } else {
-                    http_response_code(400);
+
                     $dataErrs = array("Records" => $recordsErr, "PageNo" => $pageNoErr, "Message" => "Recorrect error");
                     $response['statusCode'] = 400;
                     $response['message'] = "Bad Request";
                     $response['error'] = $dataErrs;
                 }
             } else {
-                http_response_code(405);
+
                 $response['statusCode'] = 405;
                 $response['message'] = "Method not allowed";
                 $response['error'] = "HTTP method not allowed";
@@ -255,7 +255,7 @@ if ($authenticationToken) {
                 $getCountRecord = $details['Record'];
                 $getDetails = $details['Data'];
                 if ($getCountRecord > 0) {
-                    http_response_code(200);
+
                     $response['statusCode'] = 200;
                     $response['records'] = $getCountRecord;
                     $response['data'] = $getDetails;
@@ -264,7 +264,7 @@ if ($authenticationToken) {
                     $response['message'] = "No Content";
                     $response['error'] = "No record found";
                 } else {
-                    http_response_code(500);
+
                     $response['statusCode'] = 500;
                     $response['message'] = "Internal Server Error";
                     $response['error'] = "Server error";
@@ -343,18 +343,18 @@ if ($authenticationToken) {
                     $insertStatus = Blog::createBlog(json_encode($insertCredentials));
 
                     if ($insertStatus > 0) {
-                        http_response_code(201);
+
                         $response['statusCode'] = 201;
                         $response['success'] = "Successfully uploaded post";
                     } else {
-                        http_response_code(500);
+
                         unlink($fileLocation);
                         $response['statusCode'] = 500;
                         $response['message'] = "Server error";
                         $response['error'] = "Failed to post";
                     }
                 } else {
-                    http_response_code(400);
+
                     $dataErrs = array(
                         "Photo" => $photoImageErr, "Username" => $postUserErr, "Title" => $titleErr,
                         "BlogCategory" => $blogCategoryErr, "Description" => $descriptionErr
@@ -365,13 +365,13 @@ if ($authenticationToken) {
                     $response['error'] = $dataErrs;
                 }
             } else {
-                http_response_code(405);
+
                 $response['statusCode'] = 405;
                 $response['message'] = "Method not allowed";
                 $response['error'] = "HTTP method not allowed";
             }
         } else {
-            http_response_code(403);
+
             $response['statusCode'] = 403;
             $response['message'] = "Forbidden";
             $response['error'] = "Missing URL";

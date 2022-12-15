@@ -38,23 +38,23 @@ if (array_key_exists("category_name", $_GET) && array_key_exists("page", $_GET) 
             $getCountRecord = $details['Record'];
             $getDetails = $details['Data'];
             if ($getCountRecord > 0) {
-                http_response_code(200);
+
                 $response['statusCode'] = 200;
                 $response['records'] = $getCountRecord;
                 $response['data'] = $getDetails;
             } elseif ($getCountRecord == 0) {
-                http_response_code(205);
+
                 $response['statusCode'] = 205;
                 $response['message'] = "No Content";
                 $response['error'] = "No record found";
             } else {
-                http_response_code(500);
+
                 $response['statusCode'] = 500;
                 $response['message'] = "Internal Server Error";
                 $response['error'] = "Server error";
             }
         } else {
-            http_response_code(400);
+
             $dataErrs = array(
                 "Records" => $recordsErr, "PageNo" => $pageNoErr,
                 "Category" => $categoryNameErr
@@ -64,7 +64,7 @@ if (array_key_exists("category_name", $_GET) && array_key_exists("page", $_GET) 
             $response['error'] = $dataErrs;
         }
     } else {
-        http_response_code(405);
+
         $response['statusCode'] = 405;
         $response['message'] = "Method not allowed";
         $response['error'] = "Request method not allowed";
@@ -101,30 +101,30 @@ if (array_key_exists("category_name", $_GET) && array_key_exists("page", $_GET) 
             $getCountRecord = $details['Record'];
             $getDetails = $details['Data'];
             if ($getCountRecord > 0) {
-                http_response_code(200);
+
                 $response['statusCode'] = 200;
                 $response['records'] = $getCountRecord;
                 $response['data'] = $getDetails;
             } elseif ($getCountRecord == 0) {
-                http_response_code(205);
+
                 $response['statusCode'] = 205;
                 $response['message'] = "No Content";
                 $response['error'] = "No record found";
             } else {
-                http_response_code(500);
+
                 $response['statusCode'] = 500;
                 $response['message'] = "Internal Server Error";
                 $response['error'] = "Server error";
             }
         } else {
-            http_response_code(400);
+
             $dataErrs = array("Records" => $recordsErr, "PageNo" => $pageNoErr, "Username" => $userErr);
             $response['statusCode'] = 400;
             $response['message'] = "Bad request";
             $response['error'] = $dataErrs;
         }
     } else {
-        http_response_code(405);
+
         $response['statusCode'] = 405;
         $response['message'] = "Method not allowed";
         $response['error'] = "Request method not allowed";
@@ -146,36 +146,36 @@ if (array_key_exists("category_name", $_GET) && array_key_exists("page", $_GET) 
             $getCountRecord = $details['Record'];
             $getDetails = $details['Data'];
             if ($getCountRecord > 0) {
-                http_response_code(200);
+
                 $response['statusCode'] = 200;
                 $response['records'] = $getCountRecord;
                 $response['data'] = $getDetails;
             } elseif ($getCountRecord == 0) {
-                http_response_code(205);
+
                 $response['statusCode'] = 205;
                 $response['message'] = "No Content";
                 $response['error'] = "No record found";
             } else {
-                http_response_code(500);
+
                 $response['statusCode'] = 500;
                 $response['message'] = "Internal Server Error";
                 $response['error'] = "Server error";
             }
         } else {
-            http_response_code(400);
+
             $dataErrs = array("URLSlug" => $urlSlugErr);
             $response['statusCode'] = 400;
             $response['message'] = "Bad request";
             $response['error'] = $dataErrs;
         }
     } else {
-        http_response_code(405);
+
         $response['statusCode'] = 405;
         $response['message'] = "Method not allowed";
         $response['error'] = "Request method not allowed";
     }
 } else {
-    http_response_code(403);
+
     $response['statusCode'] = 403;
     $response['message'] = "Forbidden";
     $response['error'] = "URL link error";

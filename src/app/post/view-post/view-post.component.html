@@ -3,12 +3,6 @@
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>{{ pageName }}</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a routerLink="/post/add">Home</a></li>
-                <li class="breadcrumb-item active">{{ pageName }}</li>
-            </ol>
-        </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
@@ -19,22 +13,43 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Post</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
                                     <th>Status</th>
+                                    <th>Option</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>yy</td>
-                                    <td>yy</td>
+                            <tbody *ngIf="isData else blank">
+                                <tr *ngFor="let post of postList">
+                                    <td>{{ post.blog_title }}</td>
+                                    <td>{{ post.blog_descr }}</td>
+                                    <td>{{ post.blog_status=="0"?"Inactive":"Active" }}</td>
+                                    <td>
+                                        <a [routerLink]="['/post/edit', post.post_id]">
+                                            <button class="btn btn-info">
+                                                EDIT
+                                            </button>
+                                        </a>
+                                        || &nbsp;
+                                        <button class="btn btn-warning"
+                                            (click)="statusChange(post.blog_id, post.blog_status)">
+                                            {{ post.blog_status=="0"?"ACTIVE":"INACTIVE" }}
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
+                            <ng-template #blank>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3">{{ errorMessage }}</td>
+                                    </tr>
+                                </tbody>
+                            </ng-template>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 </main><!-- End #main -->
 <app-bottom></app-bottom>

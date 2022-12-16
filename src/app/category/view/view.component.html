@@ -24,9 +24,12 @@
                                     <td>{{ category.category_name }}</td>
                                     <td>{{ category.category_status=="0"?"Inactive":"Active" }}</td>
                                     <td>
-                                        <button class="btn btn-info">
-                                            EDIT
-                                        </button> || &nbsp;
+                                        <a [routerLink]="['/category/edit', category.category_id]">
+                                            <button class="btn btn-info">
+                                                EDIT
+                                            </button>
+                                        </a>
+                                        || &nbsp;
                                         <button class="btn btn-warning"
                                             (click)="statusChange(category.category_id, category.category_status)">
                                             {{ category.category_status=="0"?"ACTIVE":"INACTIVE" }}

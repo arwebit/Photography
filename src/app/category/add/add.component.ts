@@ -28,6 +28,7 @@ export class AddComponent {
         if (this.statusCode == 201) {
           this.success = result.success;
           this.categoryNameErr = "";
+          this.categoryForm.reset();
         } else {
           this.success = "";
           this.categoryNameErr = result.error.Category;

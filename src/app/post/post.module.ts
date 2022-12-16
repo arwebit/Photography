@@ -6,6 +6,7 @@ import { PostComponent } from './post.component';
 import { LayoutsModule } from '../layouts/layouts.module';
 import { AddPostComponent } from './add-post/add-post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ViewPostComponent } from './view-post/view-post.component';
   imports: [
     CommonModule,
     PostRoutingModule,
-    LayoutsModule
+    LayoutsModule,
+    ReactiveFormsModule
   ]
 })
 export class PostModule { }

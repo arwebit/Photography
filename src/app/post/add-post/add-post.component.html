@@ -2,17 +2,60 @@
 <app-sidebar></app-sidebar>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Dashboard</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-        </nav>
+        <h1>{{ pageName }}</h1>
     </div><!-- End Page Title -->
-
     <section class="section dashboard">
-        Add post
+        <div class="card">
+            <div class="card-body">
+                <form class="row g-3 needs-validation" [formGroup]="postForm">
+                    <b class="text-success">{{ success }}</b>
+                    <div class="col-6">
+                        <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+                        <div class="input-group has-validation">
+                            <select formControlName="BlogCategory" class="form-control" placeholder="Select category"
+                                required>
+                                <option value="">Select category</option>
+                                <option *ngFor="let categoryLists of categoryList" [value]="categoryLists.category_id">
+                                    {{ categoryLists.category_name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div style="font-weight: bold;" class="p-1 mb-1"
+                            [ngClass]="categoryErr == null ? '' : 'text-danger'">
+                            {{ categoryErr }}
+                        </div>
+                        <label for="description" class="form-label">Description <span
+                                class="text-danger">*</span></label>
+                        <div class="input-group has-validation">
+                            <input type="text" formControlName="Description" class="form-control" required>
+                        </div>
+                        <div style="font-weight: bold;" class="p-1 mb-1"
+                            [ngClass]="descriptionErr == null ? '' : 'text-danger'">
+                            {{ descriptionErr }}
+                        </div>
+                        <button class="btn btn-primary" (click)="savePost()">Save</button>
+                    </div>
+                    <div class="col-6">
+                        <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+                        <div class="input-group has-validation">
+                            <input type="text" formControlName="Title" class="form-control" required>
+                        </div>
+                        <div style="font-weight: bold;" class="p-1 mb-1"
+                            [ngClass]="titleErr == null ? '' : 'text-danger'">
+                            {{ titleErr }}
+                        </div>
+                        <label for="image" class="form-label">Image <span class="text-danger">*</span></label>
+                        <div class="input-group has-validation">
+                            <input type="file" class="form-control" (change)="uploadFile($event)" />
+                        </div>
+                        <div style="font-weight: bold;" class="p-1 mb-1"
+                            [ngClass]="blogImageErr == null ? '' : 'text-danger'">
+                            {{ blogImageErr }}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </section>
 
 </main><!-- End #main -->

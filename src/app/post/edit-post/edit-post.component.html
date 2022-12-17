@@ -7,7 +7,7 @@
     <section class="section dashboard">
         <div class="card">
             <div class="card-body">
-                <form class="row g-3 needs-validation" [formGroup]="postForm" enctype="multipart/form-data">
+                <form class="row g-3 needs-validation" [formGroup]="postEditForm" (ngSubmit)="editPost()">
                     <b class="text-success">{{ success }}</b>
                     <div class="col-6">
                         <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
@@ -33,20 +33,22 @@
                             [ngClass]="descriptionErr == null ? '' : 'text-danger'">
                             {{ descriptionErr }}
                         </div>
-                        <button class="btn btn-primary" (click)="savePost()">Save</button>
+                        <button class="btn btn-primary">Save</button>
                     </div>
                     <div class="col-6">
                         <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
                         <div class="input-group has-validation">
+                            <input type="hidden" formControlName="HTitle" class="form-control" required>
                             <input type="text" formControlName="Title" class="form-control" required>
                         </div>
                         <div style="font-weight: bold;" class="p-1 mb-1"
                             [ngClass]="titleErr == null ? '' : 'text-danger'">
                             {{ titleErr }}
                         </div>
-                        <label for="image" class="form-label">Image <span class="text-danger">*</span></label>
+                        <label for="image" class="form-label">Image <span class="text-danger"></span></label><br>
+                        <img [src]="postImage" width="150" height="150">
                         <div class="input-group has-validation">
-                            <input type="file" class="form-control" (change)="uploadFile($event)" />
+                            <input type="file" class="form-control" (change)="uploadPFile($event)" />
                         </div>
                         <div style="font-weight: bold;" class="p-1 mb-1"
                             [ngClass]="blogImageErr == null ? '' : 'text-danger'">

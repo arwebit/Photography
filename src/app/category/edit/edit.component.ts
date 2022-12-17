@@ -34,9 +34,10 @@ export class EditComponent {
             });
           }
         }
-      }), (err: HttpErrorResponse): void => {
-        alert(err);
-      };
+      }
+    ), (err: HttpErrorResponse): void => {
+      alert(err);
+    };
   }
 
   ngOnInit(): void {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddPostComponent } from './add-post/add-post.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 
 const routes: Routes = [
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'view',
     component: ViewPostComponent,
     data: { title: 'Photography admin : View posts' }
+  },
+  {
+    path: 'edit/:postID',
+    component: EditPostComponent,
+    data: { title: 'Photography admin : Edit post' }
   },
 ];
 

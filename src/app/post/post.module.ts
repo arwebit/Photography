@@ -7,13 +7,15 @@ import { LayoutsModule } from '../layouts/layouts.module';
 import { AddPostComponent } from './add-post/add-post.component';
 import { ViewPostComponent } from './view-post/view-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditPostComponent } from './edit-post/edit-post.component';
 
 
 @NgModule({
   declarations: [
     PostComponent,
     AddPostComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    EditPostComponent
   ],
   imports: [
     CommonModule,

@@ -25,7 +25,7 @@
                                     <td>{{ post.blog_descr }}</td>
                                     <td>{{ post.blog_status=="0"?"Inactive":"Active" }}</td>
                                     <td>
-                                        <a [routerLink]="['/post/edit', post.post_id]">
+                                        <a [routerLink]="['/post/edit', post.blog_id]">
                                             <button class="btn btn-info">
                                                 EDIT
                                             </button>

@@ -45,25 +45,25 @@ if (empty($_GET)) {
             $getDetails = $details['Data'];
 
             $successData = array("Token" => $token, "User_details" => $getDetails);
-            //http_response_code(200);
-            $response['statusCode'] = 200;
+            http_response_code(201);
+            $response['statusCode'] = 201;
             $response['message'] = "Successfully logged in";
             $response['data'] = $successData;
         } else {
-            //http_response_code(400);
+            http_response_code(400);
             $dataErrs = array("Username" => $userNameErr, "Password" => $passwordErr, "Login" => $loginErr);
             $response['statusCode'] = 400;
             $response['message'] = "Login unsuccessful";
             $response['error'] = $dataErrs;
         }
     } else {
-        // http_response_code(405);
+        http_response_code(405);
         $response['statusCode'] = 405;
         $response['message'] = "Method not allowed";
         $response['error'] = "Request method not allowed";
     }
 } else {
-    // http_response_code(403);
+    http_response_code(403);
     $response['statusCode'] = 403;
     $response['message'] = "Forbidden";
     $response['error'] = "URL link error";

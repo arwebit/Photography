@@ -6,6 +6,32 @@ namespace App\Photography;
 class Search extends DB
 {
 
+  /* ******************************** ALL CATEGORY ******************************** */
+  public static function getAllCategory($datas = null)
+  {
+      $getjsonData = json_decode($datas);
+      $startIndex = $getjsonData->StartIndex;
+      $records = $getjsonData->RecordsToBeShown;
+
+      if (($startIndex != "") && ($records != "")) {
+          $limit = "LIMIT $startIndex, $records";
+      } else {
+          $limit = "";
+      }
+      $sql = "SELECT * FROM mas_category ORDER BY category_name " . $limit;
+      $stmt = parent::getConnection()->prepare($sql);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $numRows = $result->num_rows;
+      while ($row = $result->fetch_assoc()) {
+          $data[] = $row;
+      }
+      $stmt->free_result();
+      $retData = array("Record" => $numRows, "Data" => $data);
+      return $retData;
+  }
+  /* ******************************** ALL CATEGORY ******************************** */
+
     /* ******************************** CHECK CATEGORY ******************************** */
 
     public static function getCategory($datas = null)

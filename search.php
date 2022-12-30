@@ -6,7 +6,55 @@ require_once './config/header.php';
 
 use App\Photography\Search;
 
-if (array_key_exists("category", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
+if (array_key_exists("blogs", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
+    if ($_SERVER['REQUEST_METHOD'] === "GET") {
+
+        $pageNo = trim($_GET['page']);
+        $records = trim($_GET['records']);
+        if (empty($pageNo) && $pageNo != 0) {
+            $pageNoErr = "Required";
+        }
+        if (empty($records) && $records != 0) {
+            $recordsErr = "Required";
+        } else {
+            $limitFrom = ($pageNo - 1) * $records;
+        }
+        if ($recordsErr == "" && $pageNoErr == "") {
+            $credential = array(
+                "StartIndex" => $limitFrom, "RecordsToBeShown" => $records);
+            $details = Search::getAllBlog(json_encode($credential));
+            $getCountRecord = $details['Record'];
+            $getDetails = $details['Data'];
+            if ($getCountRecord > 0) {
+
+                $response['statusCode'] = 200;
+                $response['records'] = $getCountRecord;
+                $response['data'] = $getDetails;
+            } elseif ($getCountRecord == 0) {
+
+                $response['statusCode'] = 205;
+                $response['message'] = "No Content";
+                $response['error'] = "No record found";
+            } else {
+
+                $response['statusCode'] = 500;
+                $response['message'] = "Internal Server Error";
+                $response['error'] = "Server error";
+            }
+        } else {
+
+            $dataErrs = array("Records" => $recordsErr, "PageNo" => $pageNoErr, "Username" => $userErr);
+            $response['statusCode'] = 400;
+            $response['message'] = "Bad request";
+            $response['error'] = $dataErrs;
+        }
+    } else {
+
+        $response['statusCode'] = 405;
+        $response['message'] = "Method not allowed";
+        $response['error'] = "Request method not allowed";
+    }
+}else if (array_key_exists("category", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
     if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
         $pageNo = trim($_GET['page']);

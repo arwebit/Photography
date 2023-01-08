@@ -30,9 +30,10 @@ export class LoginComponent {
   login() {
     this.loginService.login(this.myForm.value).subscribe(
       (result) => {
+        console.log(result);
         this.statusCode = result.statusCode;
 
-        if (this.statusCode == 200) {
+        if (this.statusCode == 201) {
           localStorage.setItem('userToken', result.data.Token);
           for (let userDetails of result.data.User_details) {
             this.User = userDetails.username;
@@ -46,9 +47,12 @@ export class LoginComponent {
           this.passwordErr = result.error.Password;
           this.loginErr = result.error.Login;
         }
+      }, (err: HttpErrorResponse): void => {
+        console.log(err);
+        this.userNameErr = err.error.error.Username;
+        this.passwordErr = err.error.error.Password;
+        this.loginErr = err.error.Login == "" ? err.error.Message : err.error.error.Login;
       }
-    ), (err: HttpErrorResponse): void => {
-      alert(err);
-    };
+    );
   }
 }

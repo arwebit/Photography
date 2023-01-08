@@ -12,16 +12,17 @@ if (array_key_exists("blogs", $_GET) && array_key_exists("page", $_GET) && array
         $pageNo = trim($_GET['page']);
         $records = trim($_GET['records']);
         if (empty($pageNo) && $pageNo != 0) {
-            $pageNoErr = "Required";
+            $pageNo = "";
         }
         if (empty($records) && $records != 0) {
-            $recordsErr = "Required";
+            $records = "";
         } else {
             $limitFrom = ($pageNo - 1) * $records;
         }
         if ($recordsErr == "" && $pageNoErr == "") {
             $credential = array(
-                "StartIndex" => $limitFrom, "RecordsToBeShown" => $records);
+                "StartIndex" => $limitFrom, "RecordsToBeShown" => $records
+            );
             $details = Search::getAllBlog(json_encode($credential));
             $getCountRecord = $details['Record'];
             $getDetails = $details['Data'];
@@ -54,22 +55,23 @@ if (array_key_exists("blogs", $_GET) && array_key_exists("page", $_GET) && array
         $response['message'] = "Method not allowed";
         $response['error'] = "Request method not allowed";
     }
-}else if (array_key_exists("category", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
+} else if (array_key_exists("category", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
     if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
         $pageNo = trim($_GET['page']);
         $records = trim($_GET['records']);
         if (empty($pageNo) && $pageNo != 0) {
-            $pageNoErr = "Required";
+            $pageNo = "";
         }
         if (empty($records) && $records != 0) {
-            $recordsErr = "Required";
+            $records = "";
         } else {
             $limitFrom = ($pageNo - 1) * $records;
         }
         if ($recordsErr == "" && $pageNoErr == "") {
             $credential = array(
-                "StartIndex" => $limitFrom, "RecordsToBeShown" => $records);
+                "StartIndex" => $limitFrom, "RecordsToBeShown" => $records
+            );
             $details = Search::getAllCategory(json_encode($credential));
             $getCountRecord = $details['Record'];
             $getDetails = $details['Data'];
@@ -102,7 +104,7 @@ if (array_key_exists("blogs", $_GET) && array_key_exists("page", $_GET) && array
         $response['message'] = "Method not allowed";
         $response['error'] = "Request method not allowed";
     }
-}else if (array_key_exists("category_name", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
+} else if (array_key_exists("category_name", $_GET) && array_key_exists("page", $_GET) && array_key_exists("records", $_GET)) {
     if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
         $categoryName = trim(removeHTMLEntities($_GET['category_name']));
